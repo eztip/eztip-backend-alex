@@ -16,17 +16,6 @@ module.exports = {
       last_name,
       tagline
     } = req.body;
-    const newUser = {
-      username,
-      password,
-      email,
-      type,
-      profile_photo,
-      working_since,
-      first_name,
-      last_name,
-      tagline
-    };
     const newKeys = Object.keys(newUser);
     const validations = newKeys.map(key => validators[key](newUser));
     Promise.all(validations).then(() => {
