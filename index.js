@@ -7,8 +7,9 @@ let _ = require('lodash'); // eslint-disable-line
 const server = express();
 
 server.use(express.json());
+const port = process.env.PORT || 5000;
 
-server.listen(3000, () => console.log('eztips user server running...'));
+server.listen(port, () => console.log('eztips user server running...'));
 
 process.setMaxListeners(0);
 
