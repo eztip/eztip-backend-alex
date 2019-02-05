@@ -7,7 +7,7 @@ function generateToken(user) {
     username: user.username,
   };
 
-  const secret = 'some random dev secret key';
+  const { JSW_SECRET: secret } = process.env;
 
   const options = {
     expiresIn: '10m',

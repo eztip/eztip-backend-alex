@@ -1,8 +1,7 @@
 const express = require('express');
 const requireAll = require('require-all');
 const jwt = require('jsonwebtoken');
-
-const secret = 'some random dev secret key';
+require('dotenv').config();
 
 let _ = require('lodash'); // eslint-disable-line
 const server = express();
@@ -47,3 +46,5 @@ _.each(controllers, (endpoints, controller) => {
     server[definition.type.toLowerCase()].call(server, ...args);
   });
 });
+
+
