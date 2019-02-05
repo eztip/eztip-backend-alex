@@ -8,7 +8,7 @@ const server = express();
 
 server.use(express.json());
 
-server.listen(5000, () => console.log('eztips user server running...'));
+server.listen(3000, () => console.log('eztips user server running...'));
 
 process.setMaxListeners(0);
 
