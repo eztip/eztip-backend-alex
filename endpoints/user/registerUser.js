@@ -18,6 +18,7 @@ module.exports = {
       tagline,
       type_id,
     } = req.body;
+    newUser.user_type = "guest";
     const newKeys = Object.keys(newUser);
     const validations = newKeys.map(key => validators[key](newUser));
     Promise.all(validations).then(() => {
@@ -36,14 +37,13 @@ module.exports = {
 };
 
 /*
-    users.string('username', 128).notNullable();
-    users.string('password', 128).notNullable();
-    users.string('email', 128);
-    users.string('type', 128).notNullable();
-    users.string('profile_photo', 128);
-    users.string('working_since');
-    users.string('first_name', 128).notNullable();
-    users.string('last_name', 128).notNullable();
-    users.string('tagline', 128);
-
+{
+  "username": "test2",
+  "password": "password",
+  "email": "test2@test2.com",
+  "first_name": "john",
+  "last_name": "smith",
+  "user_type": "guest",
+  "tagline": "howdy"
+}
  */

@@ -24,7 +24,12 @@ module.exports = {
       .then((returnedUser) => {
         if (returnedUser && bcrypt.compareSync(user.password, returnedUser.password)) {
           const token = generateToken(user);
-          res.status(201).json({ message: `welcome ${user.username}`, token });
+          res.status(201).json({ 
+            user_type: returnedUser.user_type, 
+            username: returnedUser.username,
+            id: returnedUser.id, 
+            token 
+          });
         } else {
           res.status(400).json({ error: 'Not authenticated.' });
         }
