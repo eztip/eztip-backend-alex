@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 const userDb = require('../../db/user.js');
 // require('dotenv').config({path:'/.env'});
 require('dotenv').config({path: __dirname + '/../../.env'});
+const cors = require('cors');
+
+server.use(cors());
 
 console.log(__dirname + '/../../.env');
 
