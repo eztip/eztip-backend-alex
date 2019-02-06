@@ -2,11 +2,13 @@ const express = require('express');
 const requireAll = require('require-all');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const middlewareConfig = require("./middleware/index");
 
 let _ = require('lodash'); // eslint-disable-line
 const server = express();
 
-server.use(express.json());
+middlewareConfig(server);
+
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log('eztips user server running...'));
