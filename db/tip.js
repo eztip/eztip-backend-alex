@@ -16,8 +16,15 @@ module.exports = {
     return query
       .where('fromUsername', username)
   },
-  get: function() {
-    let query = db('tips');
-    return query
+  get: function(id) {
+    if(id === undefined){
+      let query = db('tips');
+      return query
+    }else{
+      let query = db('tips')
+        .where('id', id)
+        .first()
+        return query
+    }
   },
 };

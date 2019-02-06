@@ -14,6 +14,7 @@ server.listen(port, () => console.log('eztips user server running...'));
 process.setMaxListeners(0);
 
 function protected(req, res, next) {
+  const { JSW_SECRET: secret } = process.env;
   const token = req.headers.authorization;
   if (token) {
     jwt.verify(token, secret, (err, decodedToken) => {
@@ -37,6 +38,25 @@ _.each(controllers, (endpoints, controller) => {
     const args = [definition.handler];
     if (definition.protected) {
       args.unshift(protected);
+      console.log(`${endpoint}: ${definition.url} | requiresAuth`);
+    }else{
+      console.log(`${endpoint}: ${definition.url}`);
+    }
+    args.unshift(`${definition.url}`);
+
+    //for chatter, later on, need to add a role check (eg admin) as another arg here
+    server[definition.type.toLowerCase()].call(server, ...args);
+  });
+});
+
+/*
+const controllers = requireAll(__dirname + '/endpoints');
+_.each(controllers, (endpoints, controller) => {
+  _.each(endpoints, (definition, endpoint) => {
+    
+    const args = [definition.handler];
+    if (definition.protected) {
+      args.unshift(protected);
       console.log(`${endpoint}: /api/${controller}${definition.url} | requiresAuth`);
     }else{
       console.log(`${endpoint}: /api/${controller}${definition.url}`);
@@ -47,5 +67,4 @@ _.each(controllers, (endpoints, controller) => {
     server[definition.type.toLowerCase()].call(server, ...args);
   });
 });
-
-
+ */

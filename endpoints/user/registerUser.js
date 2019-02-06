@@ -4,17 +4,19 @@ const validators = require('../../validators/user/create.js');
 
 module.exports = {
   type: 'POST',
-  url: '/register/',
+  url: '/register',
   handler: (req, res) => {
-    const { username,
+    const newUser = { 
+      username,
       password,
       email,
-      type,
+      user_type,
       profile_photo,
       working_since,
       first_name,
       last_name,
-      tagline
+      tagline,
+      type_id,
     } = req.body;
     const newKeys = Object.keys(newUser);
     const validations = newKeys.map(key => validators[key](newUser));

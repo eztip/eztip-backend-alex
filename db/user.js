@@ -15,4 +15,42 @@ module.exports = {
   get: function() {
     return db('users').select('id', 'username');
   },
+  getWorkers: function(id) {
+    if(id === undefined){
+      let query = db('users').select(
+        'id',
+        'username',
+        'profile_photo',
+        'working_since',
+        'tagline',
+        'first_name',
+        'last_name',
+        'type_id',
+        'user_type',
+      );
+      return query
+        .where('user_type','employee')
+    } else {
+      let query = db('users').select(
+        'id',
+        'username',
+        'profile_photo',
+        'working_since',
+        'tagline',
+        'first_name',
+        'last_name',
+        'type_id',
+        'user_type',
+      );
+      return query
+        .where('id', id)
+        .where('user_type','employee')
+        .first()
+    }
+  },
+  update: function(id, changes) {
+    return db('users')
+      .where('id', id)
+      .update(changes)
+  },
 };

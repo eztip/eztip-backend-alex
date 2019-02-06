@@ -2,9 +2,9 @@ const userDb = require('../../db/user.js');
 
 module.exports = {
   type: 'GET',
-  url: 's/',
+  url: '/workers',
   handler: (req, res) => {
-    userDb.get()
+    userDb.getWorkers()
       .then((users) => {
         res.status(200).json({ users, token: req.decodedToken });
       })
