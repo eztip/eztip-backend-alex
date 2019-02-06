@@ -1,24 +1,16 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userDb = require('../../db/user.js');
-// require('dotenv').config({path:'/.env'});
 require('dotenv').config({path: __dirname + '/../../.env'});
-
-console.log(__dirname + '/../../.env');
 
 function generateToken(user) {
   const payload = {
     username: user.username,
   };
-
   const { JSW_SECRET: secret } = process.env;
-
   const options = {
     expiresIn: '10m',
   };
-
-  console.log(process.env.JSW_SECRET);
-
   return jwt.sign(payload, secret, options);
 }
 
