@@ -14,10 +14,10 @@
     "lodash": "^4.17.11",
     "morgan": "^1.9.1",
     "require-all": "^3.0.0",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "dotenv": "^6.2.0",
   },
     "devDependencies": {
-    "dotenv": "^6.2.0",
-    "nodemon": "^1.18.9"
+      "nodemon": "^1.18.9"
   }
 }
