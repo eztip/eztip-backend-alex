@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
     users.string('first_name', 128);
     users.string('last_name', 128);
     users.string('tagline', 128);
+    users.string('occupation', 128);
     users.int('type_id');
   });
 };

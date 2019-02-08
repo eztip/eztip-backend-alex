@@ -1,4 +1,5 @@
 const userDb = require('../../db/user.js');
+const tipDb = require('../../db/tip.js');
 const validators = require('../../validators/user/create.js');
 
 module.exports = {
@@ -15,7 +16,8 @@ module.exports = {
       working_since,
       first_name,
       last_name,
-      tagline
+      tagline,
+      occupation
     } = req.body;
     console.log(id);
     console.log(modififedUser);
@@ -27,12 +29,24 @@ module.exports = {
         if(response === undefined){
           res.status(404).json({message: "Worker not found."});
         }else{
-          res.status(200).json(response);
+          tipDb.getTipsToUser(id)
+            .then((tips) => {
+              if(tips === undefined) {
+                tips = [];
+              }
+              modififedUser.tips = tips;
+              res.status(200).json({ modififedUser });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json({ error: 'Could not retrieve tips.' });
+            });
         }
       })
       .catch(err => {
         res.status(500).json({ error: "The worker could not be retrieved." });
       });
     }).catch(err => res.status(err.statusCode || 500).json(err.message));
-  }
+  },
+  protected: true
 }

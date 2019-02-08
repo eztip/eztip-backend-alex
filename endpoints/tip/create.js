@@ -12,6 +12,7 @@ module.exports = {
       worker_id,
       tip_date
     } = req.body;
+    newTip.toId = worker_id;
     newTip.tip_date = new Date().toISOString();
     const newKeys = Object.keys(newTip);
     const validations = newKeys.map(key => validators[key](newTip));

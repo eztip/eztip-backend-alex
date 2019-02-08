@@ -1,6 +1,18 @@
 const bcrypt = require('bcryptjs');
 const userDb = require('../../db/user.js');
 const validators = require('../../validators/user/create.js');
+const jwt = require('jsonwebtoken');
+
+function generateToken(user) {
+  const payload = {
+    username: user.username,
+  };
+  const { JSW_SECRET: secret } = process.env;
+  const options = {
+    expiresIn: '10m',
+  };
+  return jwt.sign(payload, secret, options);
+}
 
 module.exports = {
   type: 'POST',
@@ -28,7 +40,7 @@ module.exports = {
       newUser.password = hash;
       userDb.insert(newUser)
         .then((id) => {
-          res.status(201).json(id);
+          res.status(201).json( {userId: id, username: username, token: generateToken(newUser), user_type: user_type} );
         })
         .catch((err) => {
           console.log(err);

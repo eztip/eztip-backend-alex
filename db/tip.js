@@ -1,20 +1,20 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-  getTipsToUser: function(username) {
+  getTipsToUser: function(id) {
     let query = db('tips');
     return query
-      .where('toUsername', username)
+      .where('toId', id)
   },
   insert: function(tip) {
     return db('tips')
       .insert(tip)
       .then(([id]) => id );
   },
-  getTipsFromUser: function(username) {
+  getTipsFromUser: function(id) {
     let query = db('tips');
     return query
-      .where('fromUsername', username)
+      .where('fromId', id)
   },
   get: function(id) {
     if(id === undefined){
