@@ -18,7 +18,6 @@ module.exports = {
       tagline,
       type_id,
     } = req.body;
-    newUser.user_type = "guest";
     const newKeys = Object.keys(newUser);
     const validations = newKeys.map(key => validators[key](newUser));
     Promise.all(validations).then(() => {

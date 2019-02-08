@@ -17,6 +17,9 @@ module.exports = {
     return true;
   },
   user_type: ({ user_type }) => {
+    if (user_type === '' || typeof user_type !== 'string' || (user_type !== "guest" && user_type !== "employee") ) {
+      throw new ValidationError('Invalid user_type.');
+    }
     return true;
   },
   first_name: ({ first_name }) => {
