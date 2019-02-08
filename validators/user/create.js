@@ -8,7 +8,7 @@ module.exports = {
     return true;
   },
   password: ({ password }) => {
-    if (password === '' || typeof password !== 'string' || password.length > 128 || password.length < 6) {
+    if (password === '' || typeof password !== 'string' || password.length > 128) {
       throw new ValidationError('Invalid password.');
     }
     return true;
