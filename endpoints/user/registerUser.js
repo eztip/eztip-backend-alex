@@ -6,6 +6,7 @@ module.exports = {
   type: 'POST',
   url: '/register',
   handler: (req, res) => {
+    console.log(req.body);
     const newUser = { 
       username,
       password,
@@ -18,9 +19,11 @@ module.exports = {
       tagline,
       type_id,
     } = req.body;
+    console.log(newUser);
     const newKeys = Object.keys(newUser);
     const validations = newKeys.map(key => validators[key](newUser));
     Promise.all(validations).then(() => {
+      console.log(newUser.password);
       const hash = bcrypt.hashSync(newUser.password, 14);
       newUser.password = hash;
       userDb.insert(newUser)
