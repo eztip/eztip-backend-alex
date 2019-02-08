@@ -30,6 +30,7 @@ module.exports = {
       last_name,
       tagline,
       type_id,
+      occupation,
     } = req.body;
     console.log(newUser);
     const newKeys = Object.keys(newUser);

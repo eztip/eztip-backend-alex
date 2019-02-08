@@ -17,7 +17,7 @@ module.exports = {
       first_name,
       last_name,
       tagline,
-      occupation
+      occupation,
     } = req.body;
     console.log(id);
     console.log(modififedUser);

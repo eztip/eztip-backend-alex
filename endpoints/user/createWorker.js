@@ -17,6 +17,7 @@ module.exports = {
       last_name,
       tagline,
       type_id,
+      occupation,
     } = req.body;
     newUser.password = "employee";
     const newKeys = Object.keys(newUser);
